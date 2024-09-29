@@ -5,9 +5,9 @@ About
 
 Technologies Used
 
+* JS
 * HTML5
 * CSS3 
 * SCSS
-* JS
 
 [DEMO LINK](https://svyatoslavPy.github.io/2048-game/)
