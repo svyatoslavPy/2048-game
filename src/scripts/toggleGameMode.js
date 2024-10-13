@@ -1,5 +1,5 @@
-import { TYPES_MODE } from '../constants';
-import { capitalize } from '../utils';
+import { TYPES_MODE } from "../constants";
+import { capitalize } from "../utils";
 
 const toggleGameMode = (game, button) => {
   if (button.classList.contains(TYPES_MODE.start)) {

@@ -1,4 +1,4 @@
-import { DIRECTION_KEYS, GAME_STATUSES } from '../constants';
+import { DIRECTION_KEYS, GAME_STATUSES } from "../constants";
 
 class GameController {
   constructor(game) {
@@ -8,11 +8,11 @@ class GameController {
   }
 
   setController() {
-    document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener("keydown", this.handleKeyDown);
   }
 
   removeController() {
-    document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener("keydown", this.handleKeyDown);
   }
 
   handleKeyDown(e) {
@@ -43,6 +43,7 @@ class GameController {
 
     if (newBoard !== oldBoard) {
       this.game.createNewCell();
+      this.game.updateBoard(this.game.getState());
     }
   }
 }

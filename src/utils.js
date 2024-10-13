@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { EMPTY_CELL, TARGET_SCORE } from './constants';
+import { EMPTY_CELL, TARGET_SCORE } from "./constants";
 
 export const generateRandomIndex = (maxNumber) => {
   return Math.floor(Math.random() * maxNumber);

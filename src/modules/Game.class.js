@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * This class represents the game.
@@ -10,17 +10,17 @@ import {
   EMPTY_CELL,
   GAME_STATUSES,
   MERGE_DIRECTIONS,
-} from '../constants.js';
-import TableColumn from '../scripts/TableColumn.js';
-import TableRow from '../scripts/TableRow.js';
+} from "../constants.js";
+import TableColumn from "../scripts/TableColumn.js";
+import TableRow from "../scripts/TableRow.js";
 import {
   generateRandomIndex,
   isFilledBoard,
   isWinGame,
   rollDie,
-} from '../utils.js';
-import GameController from './GameController.class.js';
-import GameMovement from './GameMovement.class.js';
+} from "../utils.js";
+import GameController from "./GameController.class.js";
+import GameMovement from "./GameMovement.class.js";
 
 class Game {
   /**
@@ -44,11 +44,11 @@ class Game {
   #controller = null;
 
   constructor(initialState = EMPTY_BOARD) {
-    this.tbody = document.querySelector('table tbody');
-    this.htmlScore = document.querySelector('.game-score');
-    this.messageLose = document.querySelector('.message-lose');
-    this.messageWin = document.querySelector('.message-win');
-    this.messageStart = document.querySelector('.message-start');
+    this.tbody = document.querySelector("table tbody");
+    this.htmlScore = document.querySelector(".game-score");
+    this.messageLose = document.querySelector(".message-lose");
+    this.messageWin = document.querySelector(".message-win");
+    this.messageStart = document.querySelector(".message-start");
     this.#board = initialState;
     this.#score = 0;
     this.#isStartGame = false;
@@ -120,7 +120,7 @@ class Game {
     }
 
     this.#getScore();
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
   moveRight() {
@@ -136,7 +136,7 @@ class Game {
     }
 
     this.#getScore();
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
   moveUp() {
@@ -152,7 +152,7 @@ class Game {
     }
 
     this.#getScore();
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
   moveDown() {
@@ -168,7 +168,7 @@ class Game {
     }
 
     this.#getScore();
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
   /**
@@ -227,12 +227,12 @@ class Game {
 
     if (gameStatus === GAME_STATUSES.win) {
       this.#isStartGame = false;
-      this.messageWin.classList.remove('hidden');
+      this.messageWin.classList.remove("hidden");
     }
 
     if (gameStatus === GAME_STATUSES.lose) {
       this.#isStartGame = false;
-      this.messageLose.classList.remove('hidden');
+      this.messageLose.classList.remove("hidden");
     }
   }
 
@@ -242,19 +242,13 @@ class Game {
 
   start() {
     this.#isStartGame = true;
-    this.messageStart.classList.add('hidden');
+    this.messageStart.classList.add("hidden");
     this.#controller = new GameController(this);
 
-    for (let grid = 0; grid < this.#board.length; grid++) {
-      for (let cell = 0; cell < this.#board.length; cell++) {
-        this.#board[grid][cell] = EMPTY_CELL;
-      }
-    }
-
     this.createNewCell();
     this.createNewCell();
 
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
   createNewCell() {
@@ -264,29 +258,28 @@ class Game {
       for (let cell = 0; cell < this.#board.length; cell++) {
         if (this.#board[grid][cell] === EMPTY_CELL) {
           emptyCells.push({
-            x: grid,
-            y: cell,
+            gridPos: grid,
+            cellPos: cell,
           });
         }
       }
     }
 
     const randomIndex = generateRandomIndex(emptyCells.length);
-    const { x, y } = emptyCells[randomIndex];
-
-    this.#board[x][y] = rollDie() ? 4 : 2;
+    const { gridPos, cellPos } = emptyCells[randomIndex];
+    this.#board[gridPos][cellPos] = rollDie() ? 4 : 2;
   }
   /**
    * Resets the game.
    */
   #clearStatus() {
-    this.messageLose.classList.add('hidden');
-    this.messageWin.classList.add('hidden');
+    this.messageLose.classList.add("hidden");
+    this.messageWin.classList.add("hidden");
   }
 
   restart() {
     this.#isStartGame = false;
-    this.messageStart.classList.remove('hidden');
+    this.messageStart.classList.remove("hidden");
 
     this.#resetScore();
     this.#clearStatus();
@@ -295,26 +288,24 @@ class Game {
 
     for (let grid = 0; grid < this.#board.length; grid++) {
       for (let cell = 0; cell < this.#board.length; cell++) {
-        if (this.#board[grid][cell] !== EMPTY_CELL) {
-          this.#board[grid][cell] = EMPTY_CELL;
-        }
+        this.#board[grid][cell] = EMPTY_CELL;
       }
     }
 
-    this.#updateBoard(this.#board);
+    this.updateBoard(this.#board);
   }
 
-  #updateBoard(currentBoard) {
-    this.tbody.innerHTML = '';
+  updateBoard(currentBoard) {
+    this.tbody.innerHTML = "";
 
     for (let grid = 0; grid < currentBoard.length; grid++) {
-      const tr = TableRow('field-row');
+      const tr = TableRow("field-row");
 
       for (let cell = 0; cell < currentBoard.length; cell++) {
-        const td = TableColumn('field-cell');
+        const td = TableColumn("field-cell");
         const value = currentBoard[grid][cell];
 
-        td.classList.add('field-cell');
+        td.classList.add("field-cell");
 
         if (value > EMPTY_CELL) {
           td.classList.add(`field-cell--${value}`);
