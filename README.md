@@ -21,15 +21,15 @@ To run this project on your local machine, please follow these steps:
    git clone https://github.com/svyatoslavPy/2048-game.git
 Navigate to the project directory:
 
-bash
+* bash
 cd 2048-game
 Install dependencies: Make sure you have Node.js installed (recommended to use more than version 14.x). Run the following command to install all the necessary dependencies:
 
-bash
+* bash
 npm install
 Start the development server: Run the following command to start a local development server:
 
-bash
+* bash
 npm run start
 This will start the project on http://localhost:3000 (or another port if specified in the configuration).
 
