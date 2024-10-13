@@ -13,5 +13,6 @@ Technologies Used
 [DEMO LINK](https://svyatoslavPy.github.io/2048-game/)
 
 Follow this instructions
+
 npm i
 npm run start
