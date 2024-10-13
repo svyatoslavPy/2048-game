@@ -14,5 +14,5 @@ Technologies Used
 
 Follow this instructions
 
-npm i
-npm run start
+* npm i
+* npm run start
