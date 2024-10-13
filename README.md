@@ -14,7 +14,7 @@ Technologies Used
 
 Follow this instructions
 
-* Make sure you have Node.js installed (version 14.x or higher is recommended)
+* Make sure you have Node.js installed (higher version 14.x).
 * git clone https://github.com/svyatoslavPy/2048-game.git
 * npm i
 * npm run start
